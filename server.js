@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 // Start server
 app.listen(port, async () => {
-  if (isProduction)
+  if (!isProduction)
     console.log(`Server running on http://localhost:${port} in ${NODE_ENV} environment`);
   else
     console.log(`Server running on http://${publicIP}:${port} in ${NODE_ENV} environment`);
