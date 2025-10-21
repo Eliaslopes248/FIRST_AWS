@@ -14,6 +14,7 @@ const app = express();
 
 // Port selection based on environment
 const port = process.env.PORT || (isProduction ? 8080 : 3000);
+const publicIP = process.env.SERVER_IP || "localhost";
 
 // Middleware
 app.use(express.json());
@@ -32,6 +33,9 @@ app.get('/', (req, res) => {
 
 // Start server
 app.listen(port, async () => {
-  console.log(`Server running on http://localhost:${port} in ${NODE_ENV} environment`);
+  if (isProduction)
+    console.log(`Server running on http://localhost:${port} in ${NODE_ENV} environment`);
+  else
+    console.log(`Server running on http://${publicIP}:${port} in ${NODE_ENV} environment`);
 });
 
